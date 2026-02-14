@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine 💗</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffd6e8;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  background: white;
+  padding: 24px;
+  border-radius: 20px;
+  text-align: center;
+  width: 320px;
+}
+
+img {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.buttons {
+  margin-top: 20px;
+  position: relative;
+  height: 60px;
+}
+
+button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#yes {
+  background: #ff4f9a;
+  color: white;
+}
+
+#no {
+  background: #ffd1e6;
+  position: absolute;
+  right: 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h2>Will you be my Valentine? 💗</h2>
+
+  <img src="cat.jpg">
+
+  <div class="buttons">
+    <button id="yes">YES 💕</button>
+    <button id="no">NO 🙈</button>
+  </div>
+
+  <p style="font-size:12px;color:#666;">(Click anywhere to start music)</p>
+</div>
+
+<audio id="music" loop src="music.mp3"></audio>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const music = document.getElementById("music");
+
+document.body.addEventListener("click", () => {
+  music.play();
+}, { onc
