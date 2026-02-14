@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine? 🖤</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 2rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            max-width: 85%;
+            width: 320px;
+        }
+
+        #gif-container img {
+            width: 100%;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            height: 60px; 
+            position: relative;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+        }
+
+        #noBtn {
+            background-color: #fff;
+            color: #ff4d6d;
+            border: 1px solid #ff4d6d;
+        }
+
+        .hidden { display: none; }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) opacity(1); }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        .heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+            animation: floatUp 4s linear forwards;
+        }
+    </style>
+</head>
+<body onclick="playMusic()">
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="askPage" class="container">
+        <div id="gif-container">
+            <img src="https://media1.tenor.com/m/C77Lp_o-v9AAAAAC/cat-kitty.gif" alt="Black Cat">
+        </div>
+        <h1>Will you be my valentine? <br>Brybry🥺</h1>
+        <div class="buttons">
+            <button id="yesBtn">Yes! ❤️</button>
+            <button id="noBtn">No... 😿</button>
+        </div>
+    </div>
+
+    <div id="successPage" class="container hidden">
+        <div id="gif-container">
+            <img src="https://media1.tenor.com/m/8X6_v8H8pWAAAAAC/cat-black-cat.gif" alt="Happy Cat">
+        </div>
+        <h1>Yay!!! I love you! 💖</h1>
+        <p style="color: #ff4d6d; font-weight: bold;">Happy Valentine Day</p>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const askPage = document.getElementById('askPage');
+        const successPage = document.getElementById('successPage');
+        const bgMusic = document.getElementById('bgMusic');
+        let musicStarted = false;
+
+        function playMusic() {
+            if (!musicStarted) {
+                bgMusic.volume = 0.5;
+                bgMusic.play().catch(e => console.log("Music ready"));
+                musicStarted = true;
+            }
+        }
+
+        yesBtn.addEventListener('click', () => {
+            playMusic();
+            askPage.classList.add('hidden');
+            successPage.classList.remove('hidden');
+            spawnHearts();
+        });
+
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveButton(); });
+
+        function moveButton() {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 20);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 20);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        }
+
+        function spawnHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.innerHTML = '💗';
+                heart.className = 'heart';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = '100vh';
+                heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 4000);
+            }, 300);
+        }
+    </script>
+</body>
+</html>
