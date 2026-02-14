@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine 💗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ffd6e8, #ffeaf4);
+      font-family: "Comic Sans MS", "Poppins", cursive;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 30px 20px;
+      border-radius: 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      max-width: 90%;
+    }
+
+    h1 {
+      color: #ff5fa2;
+      margin-bottom: 15px;
+      font-size: 2rem;
+    }
+
+    img {
+      width: 220px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 60px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    #yesBtn {
+      background-color: #ff5fa2;
+      color: white;
+      margin-right: 15px;
+    }
+
+    #yesBtn:hover {
+      transform: scale(1.1);
+    }
+
+    #noBtn {
+      background-color: #ffc1dc;
+      color: #555;
+      position: absolute;
+    }
+
+    .music-control {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #777;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Will you be my Valentine? 💗</h1>
+
+    <!-- 水汪汪眼睛貓咪 -->
+    <img src="https://i.imgur.com/2ZQZ6zY.jpg" alt="cute kitten" />
+
+    <div class="buttons">
+      <button id="yesBtn">YES 💕</button>
+      <button id="noBtn">NO 🙈</button>
+    </div>
+
+    <div class="music-control" onclick="toggleMusic()">
+      🎵 Toggle background music
+    </div>
+  </div>
+
+  <!-- 背景音樂（輕音樂） -->
+  <audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_5c2d3c6d59.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const music = document.getElementById("bgMusic");
+
+    noBtn.style.left = "120px";
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 80 - 40;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      document.body.innerHTML = `
+        <div style="
+          height:100vh;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          flex-direction:column;
+          background:linear-gradient(135deg,#ffd6e8,#ffeaf4);
+          font-family:Comic Sans MS;
+          text-align:center;
+        ">
+          <h1 style="color:#ff5fa2;">YAY!!! 💖💖💖</h1>
+          <p style="font-size:1.5rem;">You just made my heart melt 🥺💗</p>
+          <img src="https://i.imgur.com/qIufhof.jpg" style="width:250px;border-radius:20px;" />
+        </div>
+      `;
+      music.play();
+    });
+
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+  </script>
+</body>
+</html>
